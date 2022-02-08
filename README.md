@@ -1,0 +1,20 @@
+# OpenTopography-DEM-Downloader-qgis-plugin
+
+QGIS plugin to dwonload DEMs from OpenTopography.org
+
+This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying area extent in QGIS. The downloaded DEM wil just cover the defined extent.
+
+Extent can be defined with
+  1 . a Layer in the content
+  2 . current canvas extent
+  3 . user specified extent drawn on the canvas
+  
+DEMs availables to donwload:
+  1. SRTM 90m
+  2. SRTM 30m
+  3. ALOS World 3D 30m
+  4. SRTM GL1 Ellipsoidal 30m
+  5. Global Bathymetry SRTM15+ V2.1
+  6. Copernicus Global DSM 30m
+  7. Copernicus Global DSM 90m
+  8. NASADEM Global DEM
