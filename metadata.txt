@@ -24,7 +24,7 @@ about=This plugin will download DEMs from OpenTopography.org for user selected e
   
  ** Get an API Key from OpenTopography.org to download the DEMs 
 
-tracker=http://bugs
+tracker=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/issues
 repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 # End of mandatory metadata
 
