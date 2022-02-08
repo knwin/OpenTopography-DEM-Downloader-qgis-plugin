@@ -58,6 +58,10 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
     def initAlgorithm(self, config):
         my_settings = QgsSettings()
         my_api_key = my_settings.value("OpenTopographyDEMDownloader/ot_api_key", "")
+        if my_api_key=="":
+            api_key_text = 'Enter your API key '
+        else:
+            api_key_text = 'Enter your API key or use existing one below'
 
         self.addParameter(QgsProcessingParameterEnum('DEMs', 'Select DEM to download', 
                             options=['SRTM 90m','SRTM 30m','ALOS World 3D 30m','SRTM GL1 Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM'], 
@@ -68,7 +72,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         self.addParameter(QgsProcessingParameterString('layer_prefix', 'Prefix for layer name (i.e prefix_dem-name)', 
                             optional=True, multiLine=False, defaultValue='')
                          )
-        self.addParameter(QgsProcessingParameterString('API_key', 'Enter your API key', multiLine=False, defaultValue=my_api_key))
+        self.addParameter(QgsProcessingParameterString('API_key', api_key_text, multiLine=False, defaultValue=my_api_key))
         self.addParameter(QgsProcessingParameterRasterDestination(self.OUTPUT, self.tr('Output Raster')))
 
     def processAlgorithm(self, parameters, context, feedback):
