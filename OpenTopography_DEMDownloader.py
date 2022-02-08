@@ -66,12 +66,12 @@ class OpenTopographyDEMDownloaderPlugin(object):
               QIcon(icon),
               u"OpenTopography DEM Downloader", self.iface.mainWindow())
         self.action.triggered.connect(self.run)
-        self.iface.addPluginToMenu(u"&OpenTopography DEM", self.action)
+        self.iface.addPluginToRasterMenu(u"&OpenTopography DEM", self.action)
         self.iface.addToolBarIcon(self.action)
 
     def unload(self):
         QgsApplication.processingRegistry().removeProvider(self.provider)
-        self.iface.removePluginMenu(u"&OpenTopography DEM", self.action)
+        self.iface.removePluginRasterMenu(u"&OpenTopography DEM", self.action)
         self.iface.removeToolBarIcon(self.action)
         
     def run(self):        
