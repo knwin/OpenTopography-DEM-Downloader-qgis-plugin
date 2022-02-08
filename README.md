@@ -5,6 +5,7 @@ QGIS plugin to dwonload DEMs from OpenTopography.org
 This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying area extent in QGIS. The downloaded DEM wil just cover the defined extent.
 
 Extent can be defined with
+
   1 . a Layer in the content
   2 . current canvas extent
   3 . user specified extent drawn on the canvas
