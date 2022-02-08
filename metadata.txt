@@ -5,15 +5,27 @@
 [general]
 name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
-description=This plugin downloads DEM from OpenTopography.org
+#description=This plugin downloads DEM from OpenTopography.org
 version=1.0
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
 about=This plugin will download DEMs from OpenTopography.org for user selected extent only
+ 
+  DEMs:
+  1. SRTM 90m
+  2. SRTM 30m
+  3. ALOS World 3D 30m
+  4. SRTM GL1 Ellipsoidal 30m
+  5. Global Bathymetry SRTM15+ V2.1
+  6. Copernicus Global DSM 30m
+  7. Copernicus Global DSM 90m
+  8. NASADEM Global DEM
+  
+ ** Get an API Key from OpenTopography.org to download the DEMs 
 
 tracker=http://bugs
-repository=http://repo
+repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 # End of mandatory metadata
 
 # Recommended items:
@@ -23,13 +35,13 @@ hasProcessingProvider=yes
 # changelog =
 
 # Tags are comma separated with spaces allowed
-tags=python
+tags=dem, opentopograpy
 
-homepage=http://homepage
-category=Analysis
+homepage=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/blob/main/README.md
+category=Raster
 icon=icon.png
 # experimental flag
-experimental=False
+experimental=True
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
@@ -40,7 +52,7 @@ deprecated=False
 # plugin_dependencies=
 
 Category of the plugin: Raster
-# category=
+#category=
 
 # If the plugin can run on QGIS Server.
 server=False
