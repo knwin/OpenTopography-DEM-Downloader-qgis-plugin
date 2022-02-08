@@ -33,6 +33,12 @@ repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
+changelog=1.0
+    - Accept Extent in any CRS
+    - API Key is required for all DEMs
+    - API Key is stored and retrieved next time for ready use
+    - Can be used in model builder
+
 
 # Tags are comma separated with spaces allowed
 tags=dem, opentopograpy
@@ -41,7 +47,7 @@ homepage=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/blob
 category=Raster
 icon=icon.png
 # experimental flag
-experimental=True
+experimental=False
 
 # deprecated flag (applies to the whole plugin, not just a single version)
 deprecated=False
