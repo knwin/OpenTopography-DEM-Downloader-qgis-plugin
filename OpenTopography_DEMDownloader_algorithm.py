@@ -71,7 +71,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         self.addParameter(QgsProcessingParameterString('API_key', 'Enter your API key', multiLine=False, defaultValue=my_api_key))
         self.addParameter(QgsProcessingParameterRasterDestination(self.OUTPUT, self.tr('Output Raster')))
 
-    def processAlgorithm(self, parameters, context, feedback, my_settings):
+    def processAlgorithm(self, parameters, context, feedback):
         
         my_settings = QgsSettings()
                 
