@@ -69,9 +69,6 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
                             )
                           )
         self.addParameter(QgsProcessingParameterExtent('Extent', 'Define extent to download', defaultValue=None))
-        self.addParameter(QgsProcessingParameterString('layer_prefix', 'Prefix for layer name (i.e prefix_dem-name)', 
-                            optional=True, multiLine=False, defaultValue='')
-                         )
         self.addParameter(QgsProcessingParameterString('API_key', api_key_text, multiLine=False, defaultValue=my_api_key))
         self.addParameter(QgsProcessingParameterRasterDestination(self.OUTPUT, self.tr('Output Raster')))
 
@@ -104,14 +101,14 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             north = QgsExpression(north_exp).evaluate(context_exp)
             east = QgsExpression(east_exp).evaluate(context_exp)
         dem_codes = ['SRTMGL3','SRTMGL1','AW3D30','SRTMGL1_E','SRTM15Plus','COP90','COP30','NASADEM']
-        dem_names = ['_SRTM90m','_SRTM30m','_AW3D30','_SRTM30m_E','_SRTM15Plus','_COP90','_COP30','_NASADEM']
+
         dem_code = dem_codes[parameters['DEMs']]
-        dem_name = parameters['layer_prefix'] + dem_names [parameters['DEMs']]
+
         dem_url = f'https://portal.opentopography.org/API/globaldem?demtype={dem_code}&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff'
         dem_url=dem_url + "&API_Key=" + parameters['API_key']
         
         print ("Download extent in WGS84: ",south,west,north,east)
-        print (dem_url)
+        #print (dem_url)
         
         dem_file = self.parameterAsFileOutput(parameters, self.OUTPUT, context)
         try:
@@ -127,17 +124,19 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
 
                 
         # Load layer into project
-        if dem_file == 'TEMPORARY_OUTPUT':
+        dem_file_name = os.path.basename(dem_file)
+        if dem_file_name == 'OUTPUT.tif':
             alg_params = {           
                 'INPUT': outputs['DownloadFile']['OUTPUT'],
-                'NAME': dem_name
+                'NAME': dem_code+"[Memory]"
             }
         else:
             alg_params = {           
                 'INPUT': dem_file,
-                'NAME': dem_name
+                'NAME': dem_file_name
             }
         outputs['LoadLayerIntoProject'] = processing.run('native:loadlayer', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
+        
 
 
         return {self.OUTPUT: outputs['DownloadFile']['OUTPUT']}
@@ -192,28 +191,8 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get API key.
         
         Developed by: Kyaw Naing Win
-        Date: 28 Nov 2021 
-        email: kyawnaingwinknw@gmail.com
-        
-        change log:
-        ver1.0 - 3 Feb 2022
-         - relaease as plugin
-         
-        ver0.5 - 2 Feb 2022
-         - API key is stored and retrieved if exists
-         
-        ver0.4 - 27 Jan 2022
-         - Applicable in Model builder
-         
-        ver0.3 - 21 Jan 2022
-         - ALL DEM needs API key
-        
-        ver0.2 - 29 Nov 2021..
-         - accept any CRS when defining extent
-        
-        ver0.1 - 28 Nov 2021
-         - first working version
-         - none EPSG:4326 extent will throw error
+        Date: 2022-01-27
+        email: kyawnaingwinknw@gmail.com 
 
         """
         return self.tr(help_text)
