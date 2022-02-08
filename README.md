@@ -18,3 +18,6 @@ DEMs availables to donwload:
   6. Copernicus Global DSM 30m
   7. Copernicus Global DSM 90m
   8. NASADEM Global DEM
+
+** You will need an API Key to download these DEMs as per requirement of the OpenTopography.org.
+Read detail insturction to get an API Key here.. https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
