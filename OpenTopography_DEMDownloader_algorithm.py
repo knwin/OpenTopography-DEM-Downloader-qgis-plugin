@@ -100,6 +100,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             west = QgsExpression(west_exp).evaluate(context_exp)
             north = QgsExpression(north_exp).evaluate(context_exp)
             east = QgsExpression(east_exp).evaluate(context_exp)
+            
         dem_codes = ['SRTMGL3','SRTMGL1','AW3D30','SRTMGL1_E','SRTM15Plus','COP90','COP30','NASADEM']
 
         dem_code = dem_codes[parameters['DEMs']]
@@ -107,7 +108,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         dem_url = f'https://portal.opentopography.org/API/globaldem?demtype={dem_code}&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff'
         dem_url=dem_url + "&API_Key=" + parameters['API_key']
         
-        print ("Download extent in WGS84: ",south,west,north,east)
+        #print ("Download extent in WGS84: ",south,west,north,east)
         #print (dem_url)
         
         dem_file = self.parameterAsFileOutput(parameters, self.OUTPUT, context)
