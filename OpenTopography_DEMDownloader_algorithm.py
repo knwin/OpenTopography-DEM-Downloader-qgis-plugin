@@ -80,16 +80,16 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         outputs = {}
         
         # process extent bbox information
-        extent = parameters['Extent']
-        epsg = extent.split(' ')[1]
-        epsg = epsg[1:-1] # strip off [ ]
-        #print (epsg)
-        extent = extent.split(' ')[0].split(',')
-        south = extent[2]
-        north = extent[3]
-        west = extent[0]
-        east = extent[1]
-        if not(epsg=='EPSG:4326'):
+        crs = self.parameterAsExtentCrs(parameters, "Extent", context)
+        extent = self.parameterAsExtentGeometry(
+            parameters, "Extent", context
+        ).boundingBox()
+        epsg = crs.authid()
+        south = extent.yMinimum()
+        north = extent.yMaximum()
+        west = extent.xMinimum()
+        east = extent.xMaximum()
+        if epsg != "EPSG:4326":
             south_exp =  f'y(transform(make_point({west},{south}),\'{epsg}\',\'EPSG:4326\'))'
             west_exp =  f'x(transform(make_point({west},{south}),\'{epsg}\',\'EPSG:4326\'))'
             north_exp =  f'y(transform(make_point({east},{north}),\'{epsg}\',\'EPSG:4326\'))'
