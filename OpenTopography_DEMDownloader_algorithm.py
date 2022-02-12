@@ -42,6 +42,9 @@ from qgis.core import (QgsProcessing,
                        QgsExpressionContext, 
                        QgsExpressionContextUtils,
                        QgsProcessingParameterRasterDestination,
+                       QgsCoordinateTransform,
+                       QgsCoordinateReferenceSystem,
+                       QgsProject,
                        QgsSettings)
 import processing
 import os
@@ -84,27 +87,22 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         extent = self.parameterAsExtentGeometry(
             parameters, "Extent", context
         ).boundingBox()
-        epsg = crs.authid()
-        south = extent.yMinimum()
-        north = extent.yMaximum()
-        west = extent.xMinimum()
-        east = extent.xMaximum()
-        if epsg != "EPSG:4326":
-            south_exp =  f'y(transform(make_point({west},{south}),\'{epsg}\',\'EPSG:4326\'))'
-            west_exp =  f'x(transform(make_point({west},{south}),\'{epsg}\',\'EPSG:4326\'))'
-            north_exp =  f'y(transform(make_point({east},{north}),\'{epsg}\',\'EPSG:4326\'))'
-            east_exp =  f'x(transform(make_point({east},{north}),\'{epsg}\',\'EPSG:4326\'))'
-            context_exp = QgsExpressionContext()
-            
-            south = QgsExpression(south_exp).evaluate(context_exp)
-            west = QgsExpression(west_exp).evaluate(context_exp)
-            north = QgsExpression(north_exp).evaluate(context_exp)
-            east = QgsExpression(east_exp).evaluate(context_exp)
-            
+
+        if crs.authid() != "EPSG:4326":
+            extent = QgsCoordinateTransform(
+                crs,
+                QgsCoordinateReferenceSystem("EPSG:4326"),
+                QgsProject.instance(),
+            ).transformBoundingBox(extent)
+
         dem_codes = ['SRTMGL3','SRTMGL1','AW3D30','SRTMGL1_E','SRTM15Plus','COP90','COP30','NASADEM']
 
         dem_code = dem_codes[parameters['DEMs']]
 
+        south = extent.yMinimum()
+        north = extent.yMaximum()
+        west = extent.xMinimum()
+        east = extent.xMaximum()
         dem_url = f'https://portal.opentopography.org/API/globaldem?demtype={dem_code}&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff'
         dem_url=dem_url + "&API_Key=" + parameters['API_key']
         
