@@ -11,7 +11,7 @@ Extent can be defined with
   3 . user specified extent drawn on the canvas
   
 DEMs availables to donwload:
-  1. SRTM 90m
+  1. [SRTM 90m] (https://portal.opentopography.org/raster?opentopoID=OTSRTM.042013.4326.1)
   2. SRTM 30m
   3. ALOS World 3D 30m
   4. SRTM GL1 Ellipsoidal 30m
