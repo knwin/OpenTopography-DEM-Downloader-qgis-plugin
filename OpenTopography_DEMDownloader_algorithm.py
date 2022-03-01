@@ -83,6 +83,8 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         outputs = {}
         
         # process extent bbox information
+        # - codes contributed by suricactus - coordinate transformation use qgis core library rather than string processing and expression codes in previous version.
+        # - This allow model to accept layer as input for extent to download dem
         crs = self.parameterAsExtentCrs(parameters, "Extent", context)
         extent = self.parameterAsExtentGeometry(
             parameters, "Extent", context
@@ -94,6 +96,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
                 QgsCoordinateReferenceSystem("EPSG:4326"),
                 QgsProject.instance(),
             ).transformBoundingBox(extent)
+        # end of suricactus' codes
 
         dem_codes = ['SRTMGL3','SRTMGL1','SRTMGL1_E','AW3D30','AW3D30_E','SRTM15Plus','COP90','COP30','NASADEM']
 
