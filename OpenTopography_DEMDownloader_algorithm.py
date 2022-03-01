@@ -67,7 +67,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             api_key_text = 'Enter your API key or use existing one below'
 
         self.addParameter(QgsProcessingParameterEnum('DEMs', 'Select DEM to download', 
-                            options=['SRTM 90m','SRTM 30m','ALOS World 3D 30m','SRTM GL1 Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM'], 
+                            options=['SRTM 90m','SRTM 30m','SRTM GL1 Ellipsoidal 30m','ALOS World 3D 30m','ALOS World 3D Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM'], 
                             allowMultiple=False, defaultValue=[0]
                             )
                           )
@@ -95,7 +95,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
                 QgsProject.instance(),
             ).transformBoundingBox(extent)
 
-        dem_codes = ['SRTMGL3','SRTMGL1','AW3D30','SRTMGL1_E','SRTM15Plus','COP90','COP30','NASADEM']
+        dem_codes = ['SRTMGL3','SRTMGL1','SRTMGL1_E','AW3D30','AW3D30_E','SRTM15Plus','COP90','COP30','NASADEM']
 
         dem_code = dem_codes[parameters['DEMs']]
 
