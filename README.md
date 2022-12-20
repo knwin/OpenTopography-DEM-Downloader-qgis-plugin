@@ -31,4 +31,4 @@ According the OpenTopgraphy.org the extent limits are as follow..
  - 4,050,000 km2 for SRTM GL3, COP90 and 
  - 450,000 km2 for all other data
 
-
+Currently the tool will not check whether your request extent exceeds the allowed limit. Instead you may get same error message saying "API Key Error: Please check your API key OR Cannot Access DEM"
