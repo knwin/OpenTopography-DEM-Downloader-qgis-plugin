@@ -22,3 +22,13 @@ DEMs availables to donwload:
 
 ** You will need an API Key to download these DEMs as per requirement of the OpenTopography.org.
 Read detail insturction to get an API Key here.. https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
+
+## Extent limitations
+There is a limit on extent in a request.
+
+According the OpenTopgraphy.org the extent limits are as follow..
+ - 125,000,000 km2 for SRTM15+ V2.1, 
+ - 4,050,000 km2 for SRTM GL3, COP90 and 
+ - 450,000 km2 for all other data
+
+
