@@ -32,3 +32,10 @@ According the OpenTopgraphy.org the extent limits are as follow..
  - 450,000 km2 for all other data
 
 Currently the tool will not check whether your request extent exceeds the allowed limit. Instead you may get same error message saying "API Key Error: Please check your API key OR Cannot Access DEM"
+
+## How to check whether my API key is working or not
+You can test if your API key is ok or not with the below html request. Add your api key at the place of "YOUR_API_KEY" and copy the whole link, paste into the address box of a browser and strike Enter key. It should download a small DEM. (ref: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets)
+
+https://portal.opentopography.org/API/globaldem?demtype=NASADEM&south=45&north=46&west=-122&east=-121&outputFormat=GTiff&API_Key=YOUR_API_KEY
+
+If you dont get a dem download via the above link then your API key is incorrect/wrong (trimmed or extra space). 
