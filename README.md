@@ -45,6 +45,7 @@ API Key error
 
 ## Layer input as extent in Graphical Modeler
 Previously, when used in Graphical Modeler, the tool cannot accept layer as extent input. [suricactus](https://github.com/suricactus) has contributed the working code for this issue.
+
 ![modeler](images/modeler_input.png)
 
 ## How to check whether your API key is working or not!
