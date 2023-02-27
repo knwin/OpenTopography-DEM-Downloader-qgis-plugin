@@ -47,7 +47,7 @@ from qgis.core import (QgsProcessing,
                        QgsProject,
                        QgsSettings)
 import processing
-import os
+import os, requests
 import inspect
 
 from qgis.PyQt.QtGui import QIcon
