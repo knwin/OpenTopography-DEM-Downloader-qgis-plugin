@@ -3,12 +3,11 @@ ver-2
 QGIS plugin to dwonload DEMs from OpenTopography.org
 
 This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying area extent in QGIS. The downloaded DEM wil just cover the defined extent.
-
-The tool can be used in modeller with layer extent as input. Code is contributed by [suricactus](https://github.com/suricactus)
-
   1 . a Layer in the content
   2 . current canvas extent
   3 . user specified extent drawn on the canvas
+  
+Previously, when used in Graphical Modeler, the tool cannot accept layer extent as input. [suricactus](https://github.com/suricactus) has contributed the working code for this issue.
   
 DEMs availables to donwload:
   1. SRTM 90m [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.042013.4326.1)
