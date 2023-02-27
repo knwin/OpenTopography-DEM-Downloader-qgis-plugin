@@ -6,7 +6,7 @@
 name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
 description=This plugin downloads DEM from OpenTopography.org
-version=1.0
+version=2.0
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
@@ -21,6 +21,8 @@ about=This plugin will download DEMs from OpenTopography.org for user selected e
   6. Copernicus Global DSM 30m
   7. Copernicus Global DSM 90m
   8. NASADEM Global DEM
+  9. Europe DTM 30m
+  10. GEDI L3 Grid 1km
   
  ** Get an API Key from OpenTopography.org to download the DEMs 
 
@@ -37,11 +39,14 @@ changelog=1.0
     - Accept Extent in any CRS
     - API Key is required for all DEMs
     - API Key is stored and retrieved next time for ready use
-    - Can be used in model builder
-
+    - Can be used in Graphical Modeler
+changelog=2.0
+    - EU DTM and GEDI L3 Grid are added into the DEM list
+    - Errors returned from the OpenTopography site are displayed
+    - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus)
 
 # Tags are comma separated with spaces allowed
-tags=dem, opentopograpy
+tags=dem, opentopography
 
 homepage=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/blob/main/README.md
 category=Raster

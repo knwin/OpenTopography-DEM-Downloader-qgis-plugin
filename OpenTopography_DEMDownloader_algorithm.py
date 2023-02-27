@@ -198,9 +198,9 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Version: 2
         Date: 2023-02-27
         change log ver2: 
-         - EU DTM and GEDI L3 Grids are added into the DEM list
-         - Error messages receturn from the OT site are displayed
-         - layer extent can be used in modeller (credit: Suricactus https://github.com/suricactus)
+         - EU DTM and GEDI L3 Grid are added into the DEM list
+         - Errors returned from the OpenTopography site are displayed
+         - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus)
          
         email: kyawnaingwinknw@gmail.com 
         
