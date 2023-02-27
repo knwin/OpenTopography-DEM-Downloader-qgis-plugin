@@ -36,7 +36,8 @@ According the OpenTopgraphy.org the extent limits are as follow..
 
 In this version, the tool will respons with more information about the error.
 
-![exceed coverage limt](images/srtmgl1_error.png)
+![exceed coverage limit](images/srtmgl1_error.png)
+![api key error](images/apikey_error.png)
 
 ## How to check whether my API key is working or not
 You can test if your API key is ok or not with the below html request. Add your api key at the place of "YOUR_API_KEY" and copy the whole link, paste into the address box of a browser and strike Enter key. It should download a small DEM. (ref: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets)
