@@ -122,7 +122,9 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             outputs['DownloadFile'] = processing.run('native:filedownloader', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
             my_settings.setValue("OpenTopographyDEMDownloader/ot_api_key", parameters['API_key'])
         except:
-            raise QgsProcessingException ("API Key Error: Please check your API key OR Cannot Access DEM")
+            response = requests.request("GET", dem_url, headers={}, data={})
+            
+            raise QgsProcessingException (response.text.split('<error>')[1][:-8])
 
                 
         # Load layer into project
