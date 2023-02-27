@@ -1,9 +1,10 @@
 # OpenTopography-DEM-Downloader-qgis-plugin
-
+ver-2
 QGIS plugin to dwonload DEMs from OpenTopography.org
 
 This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying area extent in QGIS. The downloaded DEM wil just cover the defined extent.
 
+The tool can be used in modeller
 Extent can be defined with
 
   1 . a Layer in the content
@@ -19,6 +20,8 @@ DEMs availables to donwload:
   6. Copernicus Global DSM 30m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3)
   7. Copernicus Global DSM 90m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.1)
   8. NASADEM Global DEM [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.2)
+  9. EU DTM [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.092022.3035.1)
+  10. GEDI L3 1km [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.032022.4326.1)
 
 ** You will need an API Key to download these DEMs as per requirement of the OpenTopography.org.
 Read detail insturction to get an API Key here.. https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
@@ -31,7 +34,9 @@ According the OpenTopgraphy.org the extent limits are as follow..
  - 4,050,000 km2 for SRTM GL3, COP90 and 
  - 450,000 km2 for all other data
 
-Currently the tool will not check whether your request extent exceeds the allowed limit. Instead you may get same error message saying "API Key Error: Please check your API key OR Cannot Access DEM"
+In this version, the tool will respons with more information about the error.
+
+![exceed coverage limt](images/srtmgl1_error.png)
 
 ## How to check whether my API key is working or not
 You can test if your API key is ok or not with the below html request. Add your api key at the place of "YOUR_API_KEY" and copy the whole link, paste into the address box of a browser and strike Enter key. It should download a small DEM. (ref: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets)
