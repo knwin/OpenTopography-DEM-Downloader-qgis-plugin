@@ -36,7 +36,12 @@ According the OpenTopgraphy.org the extent limits are as follow..
 
 In this version, the tool will respons with more information about the error.
 
+Exceed coverage limit error
+
 ![exceed coverage limit](images/srtmgl1_error.png)
+
+API Key error
+
 ![api key error](images/apikey_error.png)
 
 ## How to check whether my API key is working or not
