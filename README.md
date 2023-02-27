@@ -8,7 +8,7 @@ This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying ar
   2 . current canvas extent
   3 . user specified extent drawn on the canvas
   
-Previously, when used in Graphical Modeler, the tool cannot accept layer extent as input. [suricactus](https://github.com/suricactus) has contributed the working code for this issue.
+![UI](images/tool_ui.png)
   
 DEMs availables to donwload:
   1. SRTM 90m [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.042013.4326.1)
@@ -42,6 +42,11 @@ Exceed coverage limit error
 API Key error
 
 ![api key error](images/apikey_error.png)
+
+## Layer input as extent in Graphical Modeler
+Previously, when used in Graphical Modeler, the tool cannot accept layer as extent input. [suricactus](https://github.com/suricactus) has contributed the working code for this issue.
+
+![modeler](images/modeler_input.png)
 
 ## How to check whether your API key is working or not!
 You can test if your API key is ok or not with the below html request. Add your api key at the place of "YOUR_API_KEY" and copy the whole link, paste into the address box of a browser and strike Enter key. It should download a small DEM. (ref: https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets)
