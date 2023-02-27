@@ -195,8 +195,16 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get API key.
         
         Developed by: Kyaw Naing Win
-        Date: 2022-01-27
+        Version: 2
+        Date: 2023-02-27
+        change log ver2: 
+         - EU DTM and GEDI L3 Grids are added into the DEM list
+         - Error messages receturn from the OT site are displayed
+         - layer extent can be used in modeller (credit: Suricactus https://github.com/suricactus)
+         
         email: kyawnaingwinknw@gmail.com 
+        
+        read more: https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 
         """
         return self.tr(help_text)
