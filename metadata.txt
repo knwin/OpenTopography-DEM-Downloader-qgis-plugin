@@ -6,7 +6,7 @@
 name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
 description=This plugin downloads DEM from OpenTopography.org
-version=2.0
+version=3.0
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
@@ -23,6 +23,8 @@ about=This plugin will download DEMs from OpenTopography.org for user selected e
   8. NASADEM Global DEM
   9. Europe DTM 30m
   10. GEDI L3 Grid 1km
+  11. GEBCOIceTopo Bathymetry 500m
+  12. GEBCOSubIceTopo Bathymetry 500m
   
  ** Get an API Key from OpenTopography.org to download the DEMs 
 
@@ -35,10 +37,9 @@ repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
-changelog=2.0
-    - EU DTM and GEDI L3 Grid are added into the DEM list
-    - Errors returned from the OpenTopography site are displayed
-    - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus)
+changelog=3.0
+    - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
+
 
 # Tags are comma separated with spaces allowed
 tags=dem, opentopography
@@ -57,8 +58,8 @@ deprecated=False
 # Check the documentation for more information.
 # plugin_dependencies=
 
-Category of the plugin: Raster
-#category=
+#Category of the plugin: Raster
+category=Raster
 
 # If the plugin can run on QGIS Server.
 server=False
