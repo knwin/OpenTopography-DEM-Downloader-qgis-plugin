@@ -58,7 +58,7 @@ deprecated=False
 # Check the documentation for more information.
 # plugin_dependencies=
 
-#Category of the plugin: Raster
+# Category of the plugin: Raster
 category=Raster
 
 # If the plugin can run on QGIS Server.
