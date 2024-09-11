@@ -197,8 +197,13 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Developed by: Kyaw Naing Win
         Version: 3
         Date: 2024-09-21
-        change log ver2: 
+        change log ver3: 
          - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
+        
+        change log ver2:
+         - EU DTM and GEDI L3 Grid are added into the DEM list
+         - Errors returned from the OpenTopography site are displayed
+         - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus) 
          
         email: kyawnaingwinknw@gmail.com 
         
