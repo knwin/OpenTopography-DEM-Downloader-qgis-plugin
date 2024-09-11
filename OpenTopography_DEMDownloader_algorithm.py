@@ -195,12 +195,10 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get API key.
         
         Developed by: Kyaw Naing Win
-        Version: 2
-        Date: 2023-02-27
+        Version: 3
+        Date: 2024-09-21
         change log ver2: 
-         - EU DTM and GEDI L3 Grid are added into the DEM list
-         - Errors returned from the OpenTopography site are displayed
-         - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus)
+         - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
          
         email: kyawnaingwinknw@gmail.com 
         
