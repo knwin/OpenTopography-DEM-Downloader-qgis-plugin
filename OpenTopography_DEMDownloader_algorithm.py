@@ -67,7 +67,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             api_key_text = 'Enter your API key or use existing one below'
 
         self.addParameter(QgsProcessingParameterEnum('DEMs', 'Select DEM to download', 
-                            options=['SRTM 90m','SRTM 30m','SRTM GL1 Ellipsoidal 30m','ALOS World 3D 30m','ALOS World 3D Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM','EU DTM 30m', 'GEDI L3 1km'], 
+                            options=['SRTM 90m','SRTM 30m','SRTM GL1 Ellipsoidal 30m','ALOS World 3D 30m','ALOS World 3D Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM','EU DTM 30m', 'GEDI L3 1km','GEBCOIceTopo Bathymetry 500m','GEBCOSubIceTopo Bathymetry 500m'], 
                             allowMultiple=False, defaultValue=[0]
                             )
                           )
@@ -98,7 +98,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             ).transformBoundingBox(extent)
         # end of suricactus' codes
 
-        dem_codes = ['SRTMGL3','SRTMGL1','SRTMGL1_E','AW3D30','AW3D30_E','SRTM15Plus','COP90','COP30','NASADEM','EU_DTM','GEDI_L3']
+        dem_codes = ['SRTMGL3','SRTMGL1','SRTMGL1_E','AW3D30','AW3D30_E','SRTM15Plus','COP90','COP30','NASADEM','EU_DTM','GEDI_L3','GEBCOIceTopo', 'GEBCOSubIceTopo']
 
         dem_code = dem_codes[parameters['DEMs']]
 
