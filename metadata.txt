@@ -37,10 +37,14 @@ repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
-changelog=3.0
-    - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
-
-
+  Date: 2024-09-21
+  change log ver3: 
+   - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
+        
+  change log ver2:
+   - EU DTM and GEDI L3 Grid are added into the DEM list
+   - Errors returned from the OpenTopography site are displayed
+   - Accept layer model input as extent input in Graphical Modeler (credit: Suricactus https://github.com/suricactus)   
 # Tags are comma separated with spaces allowed
 tags=dem, opentopography
 
@@ -58,8 +62,8 @@ deprecated=False
 # Check the documentation for more information.
 # plugin_dependencies=
 
-# Category of the plugin: Raster
-category=Raster
+Category of the plugin: Raster
+# category=Raster
 
 # If the plugin can run on QGIS Server.
 server=False
