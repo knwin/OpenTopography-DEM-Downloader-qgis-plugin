@@ -39,6 +39,8 @@ hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
   Date: 2024-09-21
+  change log ver4: 
+   - Compatible with both QGIS 3.x and GIS 4.x versions
   change log ver3: 
    - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
         
