@@ -41,6 +41,7 @@ hasProcessingProvider=yes
   Date: 2026-03-12
   change log ver4: 
    - Compatible with both QGIS 3.x and GIS 4.x versions
+
   change log ver3: 
    - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
         
