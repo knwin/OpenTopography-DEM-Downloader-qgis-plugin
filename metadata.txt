@@ -11,7 +11,7 @@ version=4.0
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
-about=This plugin will download DEMs from OpenTopography.org for user selected extent only
+about=This plugin will download DEMs from OpenTopography.org for user defined extent only
  
   DEMs:
   1. SRTM 90m
