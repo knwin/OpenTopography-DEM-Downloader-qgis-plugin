@@ -195,8 +195,10 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get API key.
         
         Developed by: Kyaw Naing Win
-        Version: 3
-        Date: 2024-09-21
+        Version: 4
+        Date: 2026-03-12
+        change log ver4: 
+         - Compatible with both QGIS 3.x and GIS 4.x versions
         change log ver3: 
          - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
         
