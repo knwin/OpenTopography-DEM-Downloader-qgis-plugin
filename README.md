@@ -23,6 +23,8 @@ DEMs availables to donwload:
   8. NASADEM Global DEM [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.2)
   9. EU DTM [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.092022.3035.1)
   10. GEDI L3 1km [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.032022.4326.1)
+  11. GEBCOIceTopo Bathymetry 500m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.1)
+  12. GEBCOSubIceTopo Bathymetry 500m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.2)
 
 ** You will need an API Key to download these DEMs as per requirement of the OpenTopography.org.
 Read detail insturction to get an API Key here.. https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
