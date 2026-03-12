@@ -52,7 +52,7 @@ hasProcessingProvider=yes
 # Tags are comma separated with spaces allowed
 tags=dem, opentopography
 
-homepage=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/blob/main/README.md
+homepage=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 category=Raster
 icon=icon.png
 # experimental flag
