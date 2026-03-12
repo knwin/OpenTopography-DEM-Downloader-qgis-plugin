@@ -35,8 +35,8 @@ import sys
 import inspect
 import processing
 
-from qgis.PyQt.QtWidgets import QAction
-from qgis.PyQt.QtGui import QIcon
+#from qgis.PyQt.QtWidgets import QAction
+from qgis.PyQt.QtGui import QIcon, QAction
 
 from qgis.core import QgsProcessingAlgorithm, QgsApplication
 from .OpenTopography_DEMDownloader_provider import OpenTopographyDEMDownloaderProvider

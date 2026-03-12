@@ -5,6 +5,7 @@
 [general]
 name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
+qgisMaximumVersion=4.99
 description=This plugin downloads DEM from OpenTopography.org
 version=3.0
 author=Kyaw Naing Win
