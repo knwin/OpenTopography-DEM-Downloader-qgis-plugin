@@ -7,7 +7,7 @@ name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
 description=This plugin downloads DEM from OpenTopography.org
-version=4.0
+version=4.1
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
@@ -38,7 +38,11 @@ repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
-  Date: 2026-03-12
+  Date: 2026-05-19
+  change log ver4.1: 
+   - Fix QAction load issue in older 3.x version like 3.28 and hopefully 3.16 versions 
+   - Compatible with both QGIS 3.x and GIS 4.x versions
+      
   change log ver4: 
    - Compatible with both QGIS 3.x and GIS 4.x versions
 
