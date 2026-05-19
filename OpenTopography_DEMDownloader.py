@@ -38,7 +38,13 @@ import processing
 #from qgis.PyQt.QtWidgets import QAction
 #from qgis.PyQt.QtGui import QIcon, QAction
 from qgis.PyQt.QtGui import QIcon
-from qgis.PyQt.QtWidgets import QAction
+
+try:
+    # Try the QGIS 4.x way first
+    from qgis.PyQt.QtGui import QAction
+except ImportError:
+    # Fall back to the QGIS 3.x way
+    from qgis.PyQt.QtWidgets import QAction
 
 from qgis.core import QgsProcessingAlgorithm, QgsApplication
 from .OpenTopography_DEMDownloader_provider import OpenTopographyDEMDownloaderProvider
