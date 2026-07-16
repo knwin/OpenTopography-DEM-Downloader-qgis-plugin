@@ -29,7 +29,7 @@ DEMs availables to donwload:
   15. Global Ensemble Digital Terrain Model 30m [read details](https://doi.org/10.5069/G9BV7DT1)
 
 ** You will need a free OpenTopography personal API Key to download these DEMs as per requirement of OpenTopography. To obtain an OpenTopography API key:
-1. Create an [OpenTopography account](https://portal.opentopography.org/newUser) or [log into your existing OpenTopography account] (https://portal.opentopography.org/login)
+1. Create an [OpenTopography account](https://portal.opentopography.org/newUser) or [log into your existing OpenTopography account](https://portal.opentopography.org/login)
 2. Click the [Request an API Key](https://portal.opentopography.org/requestService?service=api) link on the OpenTopography.org homepage.
 
 ## Extent limitations
