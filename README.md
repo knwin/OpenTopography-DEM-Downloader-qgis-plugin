@@ -1,5 +1,5 @@
 # OpenTopography-DEM-Downloader-qgis-plugin
-ver-4.1
+ver-4.2
 
 QGIS versions 3.x or 4.x 
 
@@ -12,7 +12,6 @@ This plug-in allows you to download DEMs from OpenTopgraphy.org by specifying ar
   
 ![UI](images/tool_ui.png)
   
-<<<<<<< Updated upstream
 DEMs availables to donwload:
   1. SRTM 90m [read details](https://doi.org/10.5069/G9445JDF)
   2. SRTM 30m [read details](https://doi.org/10.5069/G9445JDF)
@@ -26,28 +25,12 @@ DEMs availables to donwload:
   11. GEDI L3 1km [read details](https://doi.org/10.5069/G9V12301)
   12. GEBCOIceTopo Bathymetry 500m [read details](https://doi.org/10.5069/G9D21VTT)
   13. GEBCOSubIceTopo Bathymetry 500m [read details](https://doi.org/10.5069/G9D21VTT)
+  14. Agência Nacional de Águas DEM (ANADEM) 30m [read details](https://doi.org/10.5069/G9736P4G)
+  15. Global Ensemble Digital Terrain Model 30m [read details](https://doi.org/10.5069/G9BV7DT1)
 
 ** You will need a free OpenTopography personal API Key to download these DEMs as per requirement of OpenTopography. To obtain an OpenTopography API key:
 1. Create an [OpenTopography account](https://portal.opentopography.org/newUser) or [log into your existing OpenTopography account] (https://portal.opentopography.org/login)
 2. Click the [Request an API Key](https://portal.opentopography.org/requestService?service=api) link on the OpenTopography.org homepage.
-=======
-DEMs availables to download:
-  1. SRTM 90m [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.042013.4326.1)
-  2. SRTM 30m [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.082015.4326.1)
-  3. ALOS World 3D 30m [read details](https://portal.opentopography.org/raster?opentopoID=OTALOS.112016.4326.2)
-  4. SRTM GL1 Ellipsoidal 30m [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.082016.4326.1)
-  5. Global Bathymetry SRTM15+ V2.1 [read details](https://portal.opentopography.org/raster?opentopoID=OTSRTM.122019.4326.1)
-  6. Copernicus Global DSM 30m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.3)
-  7. Copernicus Global DSM 90m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.1)
-  8. NASADEM Global DEM [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.032021.4326.2)
-  9. EU DTM [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.092022.3035.1)
-  10. GEDI L3 1km [read details](https://portal.opentopography.org/datasetMetadata?otCollectionID=OT.032022.4326.1)
-  11. GEBCOIceTopo Bathymetry 500m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.1)
-  12. GEBCOSubIceTopo Bathymetry 500m [read details](https://portal.opentopography.org/raster?opentopoID=OTSDEM.122023.4326.2)
-
-** You will need an access key to download these DEMs as per requirement of the OpenTopography.org.
-Read detail instruction to get an access key here.. https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets
->>>>>>> Stashed changes
 
 ## Extent limitations
 There is a limit on extent in a request.
