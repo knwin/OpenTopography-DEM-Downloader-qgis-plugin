@@ -34,6 +34,5 @@ def classFactory(iface):  # pylint: disable=invalid-name
     :param iface: A QGIS interface instance.
     :type iface: QgsInterface
     """
-    
     from .OpenTopography_DEMDownloader import OpenTopographyDEMDownloaderPlugin
     return OpenTopographyDEMDownloaderPlugin(iface)

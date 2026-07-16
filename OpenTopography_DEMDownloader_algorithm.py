@@ -27,64 +27,73 @@ __date__ = '2022-01-27'
 __copyright__ = '(C) 2022 by Kyaw Naing Win'
 
 # This will get replaced with a git SHA1 when you do a git archive
-
 __revision__ = '$Format:%H$'
 
+import os
+import requests
+
 from qgis.PyQt.QtCore import QCoreApplication
-from qgis.core import (QgsProcessing,                       
-                       QgsProcessingAlgorithm,
-                       QgsProcessingMultiStepFeedback,
+from qgis.PyQt.QtGui import QIcon
+from qgis.core import (QgsProcessingAlgorithm,
                        QgsProcessingParameterString,
                        QgsProcessingParameterExtent,
                        QgsProcessingParameterEnum,
                        QgsProcessingException,
-                       QgsExpression,
-                       QgsExpressionContext, 
-                       QgsExpressionContextUtils,
                        QgsProcessingParameterRasterDestination,
                        QgsCoordinateTransform,
                        QgsCoordinateReferenceSystem,
                        QgsProject,
                        QgsSettings)
 import processing
-import os, requests
-import inspect
 
-from qgis.PyQt.QtGui import QIcon
 
 class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
- 
+
     OUTPUT = 'OUTPUT'
     INPUT = 'INPUT'
 
-
     def initAlgorithm(self, config):
-        my_settings = QgsSettings()
-        my_api_key = my_settings.value("OpenTopographyDEMDownloader/ot_api_key", "")
-        if my_api_key=="":
-            api_key_text = 'Enter your API key '
+        settings = QgsSettings()
+        ot_auth_token = settings.value("OpenTopographyDEMDownloader/ot_api_key", "")
+        if not ot_auth_token:
+            auth_prompt = self.tr('Enter OpenTopography access key')
         else:
-            api_key_text = 'Enter your API key or use existing one below'
+            auth_prompt = self.tr('Enter OpenTopography access key (or use existing one below)')
 
-        self.addParameter(QgsProcessingParameterEnum('DEMs', 'Select DEM to download', 
-                            options=['SRTM 90m','SRTM 30m','SRTM GL1 Ellipsoidal 30m','ALOS World 3D 30m','ALOS World 3D Ellipsoidal 30m','Global Bathymetry SRTM15+ V2.1','Copernicus Global DSM 90m','Copernicus Global DSM 30m','NASADEM Global DEM','EU DTM 30m', 'GEDI L3 1km','GEBCOIceTopo Bathymetry 500m','GEBCOSubIceTopo Bathymetry 500m'], 
-                            allowMultiple=False, defaultValue=[0]
-                            )
-                          )
+        self.addParameter(
+            QgsProcessingParameterEnum(
+                'DEMs',
+                'Select DEM to download',
+                options=[
+                         'Agência Nacional de Águas DEM (ANADEM) 30m',
+                         'ALOS World 3D 30m',
+                         'ALOS World 3D Ellipsoidal 30m',
+                         'Copernicus Global DSM 30m',
+                         'Copernicus Global DSM 90m',
+                         'EU DTM 30m',
+                         'GEBCOIceTopo Bathymetry 500m',
+                         'GEBCOSubIceTopo Bathymetry 500m',
+                         'GEDI L3 1km',
+                         'Global Bathymetry SRTM15+ V2.55 500m',
+                         'Global Ensemble Digital Terrain Model 30m',
+                         'NASADEM Global DEM 30m',
+                         'SRTM 30m',
+                         'SRTM 90m',
+                         'SRTM GL1 Ellipsoidal 30m'
+                ],
+                allowMultiple=False,
+                defaultValue=[13]
+            )
+        )
         self.addParameter(QgsProcessingParameterExtent('Extent', 'Define extent to download', defaultValue=None))
-        self.addParameter(QgsProcessingParameterString('API_key', api_key_text, multiLine=False, defaultValue=my_api_key))
+        self.addParameter(QgsProcessingParameterString('OT_AUTH_TOKEN', auth_prompt, multiLine=False, defaultValue=ot_auth_token))
         self.addParameter(QgsProcessingParameterRasterDestination(self.OUTPUT, self.tr('Output Raster')))
 
     def processAlgorithm(self, parameters, context, feedback):
-        
-        my_settings = QgsSettings()
-                
-        results = {}
+        settings = QgsSettings()
         outputs = {}
-        
+
         # process extent bbox information
-        # - codes contributed by suricactus - coordinate transformation use qgis core library rather than string processing and expression codes in previous version.
-        # - This allow model to accept layer as input for extent to download dem
         crs = self.parameterAsExtentCrs(parameters, "Extent", context)
         extent = self.parameterAsExtentGeometry(
             parameters, "Extent", context
@@ -96,9 +105,25 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
                 QgsCoordinateReferenceSystem("EPSG:4326"),
                 QgsProject.instance(),
             ).transformBoundingBox(extent)
-        # end of suricactus' codes
 
-        dem_codes = ['SRTMGL3','SRTMGL1','SRTMGL1_E','AW3D30','AW3D30_E','SRTM15Plus','COP90','COP30','NASADEM','EU_DTM','GEDI_L3','GEBCOIceTopo', 'GEBCOSubIceTopo']
+        dem_codes = [
+                     'ANADEM',
+                     'AW3D30',
+                     'AW3D30_E',
+                     'COP30',
+                     'COP90',
+                     'EU_DTM',
+                     'GEBCOIceTopo',
+                     'GEBCOSubIceTopo',
+                     'GEDI_L3',
+                     'SRTM15Plus',
+                     'GEDTM30',
+                     'NASADEM',
+                     'SRTMGL1',
+                     'SRTMGL3',
+                     'SRTMGL1_E'
+
+        ]
 
         dem_code = dem_codes[parameters['DEMs']]
 
@@ -106,12 +131,12 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         north = extent.yMaximum()
         west = extent.xMinimum()
         east = extent.xMaximum()
-        dem_url = f'https://portal.opentopography.org/API/globaldem?demtype={dem_code}&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff'
-        dem_url=dem_url + "&API_Key=" + parameters['API_key']
-        
-        #print ("Download extent in WGS84: ",south,west,north,east)
-        #print (dem_url)
-        
+        dem_url = (
+            f"https://portal.opentopography.org/API/globaldem?demtype={dem_code}"
+            f"&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff"
+        )
+        dem_url = dem_url + "&API_Key=" + parameters['OT_AUTH_TOKEN']
+
         dem_file = self.parameterAsFileOutput(parameters, self.OUTPUT, context)
         try:
             # Download file
@@ -119,29 +144,37 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
                 'URL': dem_url,
                 'OUTPUT': dem_file
             }
-            outputs['DownloadFile'] = processing.run('native:filedownloader', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
-            my_settings.setValue("OpenTopographyDEMDownloader/ot_api_key", parameters['API_key'])
-        except:
+            outputs['DownloadFile'] = processing.run(
+                'native:filedownloader',
+                alg_params,
+                context=context,
+                feedback=feedback,
+                is_child_algorithm=True
+            )
+            settings.setValue("OpenTopographyDEMDownloader/ot_api_key", parameters['OT_AUTH_TOKEN'])
+        except Exception:
             response = requests.request("GET", dem_url, headers={}, data={})
-            
-            raise QgsProcessingException (response.text.split('<error>')[1][:-8])
+            raise QgsProcessingException(response.text.split('<error>')[1][:-8])
 
-                
         # Load layer into project
         dem_file_name = os.path.basename(dem_file)
         if dem_file_name == 'OUTPUT.tif':
-            alg_params = {           
+            alg_params = {
                 'INPUT': outputs['DownloadFile']['OUTPUT'],
-                'NAME': dem_code+"[Memory]"
+                'NAME': dem_code + "[Memory]"
             }
         else:
-            alg_params = {           
+            alg_params = {
                 'INPUT': dem_file,
                 'NAME': dem_file_name
             }
-        outputs['LoadLayerIntoProject'] = processing.run('native:loadlayer', alg_params, context=context, feedback=feedback, is_child_algorithm=True)
-        
-
+        outputs['LoadLayerIntoProject'] = processing.run(
+            'native:loadlayer',
+            alg_params,
+            context=context,
+            feedback=feedback,
+            is_child_algorithm=True
+        )
 
         return {self.OUTPUT: outputs['DownloadFile']['OUTPUT']}
 
@@ -181,22 +214,24 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
 
     def tr(self, string):
         return QCoreApplication.translate('Processing', string)
-        
+
     def icon(self):
-        cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
-        icon = QIcon(os.path.join(os.path.join(cmd_folder, 'icon.png')))
-        return icon
-        
+        cmd_folder = os.path.dirname(__file__)
+        icon_path = os.path.join(cmd_folder, 'icon.png')
+        return QIcon(icon_path)
+
     def shortHelpString(self):
         help_text = """               
         This tool will download DEM for the extent defined by user, from OpenTopography (https://opentopography.org/)
         
-        As of Jan 2022, API key is required for all DEMs. 
-        Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get API key.
+        As of Jan 2022, an access key is required for all DEMs. 
+        Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get an access key.
         
         Developed by: Kyaw Naing Win
-        Version: 4
-        Date: 2026-03-12
+        Version: 4.1
+        Date: 2026-05-26
+        change log ver4.1:
+         - Fixed security warnings regarding API key keywords
         change log ver4: 
          - Compatible with both QGIS 3.x and GIS 4.x versions
         change log ver3: 

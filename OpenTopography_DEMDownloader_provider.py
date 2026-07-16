@@ -27,13 +27,13 @@ __date__ = '2022-01-27'
 __copyright__ = '(C) 2022 by Kyaw Naing Win'
 
 # This will get replaced with a git SHA1 when you do a git archive
-
 __revision__ = '$Format:%H$'
-import os
-import inspect
-from qgis.PyQt.QtGui import QIcon
 
+import os
+
+from qgis.PyQt.QtGui import QIcon
 from qgis.core import QgsProcessingProvider
+
 from .OpenTopography_DEMDownloader_algorithm import OpenTopographyDEMDownloaderAlgorithm
 
 
@@ -47,8 +47,7 @@ class OpenTopographyDEMDownloaderProvider(QgsProcessingProvider):
 
     def unload(self):
         """
-        Unloads the provider. Any tear-down steps required by the provider
-        should be implemented here.
+        Unloads the provider.
         """
         pass
 
@@ -57,24 +56,17 @@ class OpenTopographyDEMDownloaderProvider(QgsProcessingProvider):
         Loads all algorithms belonging to this provider.
         """
         self.addAlgorithm(OpenTopographyDEMDownloaderAlgorithm())
-        # add additional algorithms here
-        # self.addAlgorithm(MyOtherAlgorithm())
 
     def id(self):
         """
-        Returns the unique provider id, used for identifying the provider. This
-        string should be a unique, short, character only string, eg "qgis" or
-        "gdal". This string should not be localised.
+        Returns the unique provider id, used for identifying the provider.
         """
-        #'OpenTopographyDEMDownloader'
         return 'OTDEMDownloader'
 
     def name(self):
         """
         Returns the provider name, which is used to describe the provider
         within the GUI.
-
-        This string should be short (e.g. "Lastools") and localised.
         """
         return self.tr('OpenTopography')
 
@@ -83,15 +75,11 @@ class OpenTopographyDEMDownloaderProvider(QgsProcessingProvider):
         Should return a QIcon which is used for your provider inside
         the Processing toolbox.
         """
-        cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
-        icon = QIcon(os.path.join(os.path.join(cmd_folder, 'icon.png')))
-        return QgsProcessingProvider.icon(self)
+        icon_path = os.path.join(os.path.dirname(__file__), 'icon.png')
+        return QIcon(icon_path)
 
     def longName(self):
         """
-        Returns the a longer version of the provider name, which can include
-        extra details such as version numbers. E.g. "Lastools LIDAR tools
-        (version 2.2.1)". This string should be localised. The default
-        implementation returns the same string as name().
+        Returns the a longer version of the provider name.
         """
         return self.name()

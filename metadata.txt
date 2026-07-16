@@ -7,7 +7,7 @@ name=OpenTopography DEM Downloader
 qgisMinimumVersion=3.16
 qgisMaximumVersion=4.99
 description=This plugin downloads DEM from OpenTopography.org
-version=4.1
+version=4.2
 author=Kyaw Naing Win
 email=kyawnaingwinknw@gmail.com
 
@@ -17,17 +17,20 @@ about=This plugin will download DEMs from OpenTopography.org for user defined ex
   1. SRTM 90m
   2. SRTM 30m
   3. ALOS World 3D 30m
-  4. SRTM GL1 Ellipsoidal 30m
-  5. Global Bathymetry SRTM15+ V2.1
-  6. Copernicus Global DSM 30m
-  7. Copernicus Global DSM 90m
-  8. NASADEM Global DEM
-  9. Europe DTM 30m
-  10. GEDI L3 Grid 1km
-  11. GEBCOIceTopo Bathymetry 500m
-  12. GEBCOSubIceTopo Bathymetry 500m
+  4. ALOS World 3D Ellipsoidal 30m
+  5. SRTM GL1 Ellipsoidal 30m
+  6. Global Bathymetry SRTM15+ V2.1
+  7. Copernicus Global DSM 30m
+  8. Copernicus Global DSM 90m
+  9. NASADEM Global DEM
+  10. Europe DTM 30m
+  11. GEDI L3 Grid 1km
+  12. GEBCOIceTopo Bathymetry 500m
+  13. GEBCOSubIceTopo Bathymetry 500m
+  14. Agência Nacional de Águas DEM (ANADEM) 30m
+  15. Global Ensemble Digital Terrain Model 30m
   
- ** Get an API Key from OpenTopography.org to download the DEMs 
+ ** Get an access key from OpenTopography.org to download the DEMs 
 
 tracker=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin/issues
 repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
@@ -38,11 +41,16 @@ repository=https://github.com/knwin/OpenTopography-DEM-Downloader-qgis-plugin
 hasProcessingProvider=yes
 # Uncomment the following line and add your changelog:
 # changelog =
-  Date: 2026-05-19
-  change log ver4.1: 
-   - Fix QAction load issue in older 3.x version like 3.28 and hopefully 3.16 versions 
-   - Compatible with both QGIS 3.x and GIS 4.x versions
-      
+  Date: 2026-07-16
+  change log ver4.2:
+   - Agência Nacional de Águas DEM (ANADEM, 30m) for South America and Global Ensemble Digital Terrain Model (30m) are added into the DEM list
+
+  Date: 2026-05-26
+  change log ver4.1:
+   - Fixed security warnings regarding API key keywords
+   - Fixed compatiblity issues <= 3.26 versions
+
+  Date: 2026-03-12
   change log ver4: 
    - Compatible with both QGIS 3.x and GIS 4.x versions
 

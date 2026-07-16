@@ -27,18 +27,11 @@ __date__ = '2022-01-27'
 __copyright__ = '(C) 2022 by Kyaw Naing Win'
 
 # This will get replaced with a git SHA1 when you do a git archive
-
 __revision__ = '$Format:%H$'
 
 import os
-import sys
-import inspect
-import processing
 
-#from qgis.PyQt.QtWidgets import QAction
-#from qgis.PyQt.QtGui import QIcon, QAction
 from qgis.PyQt.QtGui import QIcon
-
 try:
     # Try the QGIS 4.x way first
     from qgis.PyQt.QtGui import QAction
@@ -46,13 +39,10 @@ except ImportError:
     # Fall back to the QGIS 3.x way
     from qgis.PyQt.QtWidgets import QAction
 
-from qgis.core import QgsProcessingAlgorithm, QgsApplication
+from qgis.core import QgsApplication
+import processing
+
 from .OpenTopography_DEMDownloader_provider import OpenTopographyDEMDownloaderProvider
-
-cmd_folder = os.path.split(inspect.getfile(inspect.currentframe()))[0]
-
-if cmd_folder not in sys.path:
-    sys.path.insert(0, cmd_folder)
 
 
 class OpenTopographyDEMDownloaderPlugin(object):
@@ -60,6 +50,7 @@ class OpenTopographyDEMDownloaderPlugin(object):
     def __init__(self, iface):
         self.provider = None
         self.iface = iface
+        self.action = None
 
     def initProcessing(self):
         """Init Processing provider for QGIS >= 3.8."""
@@ -67,20 +58,27 @@ class OpenTopographyDEMDownloaderPlugin(object):
         QgsApplication.processingRegistry().addProvider(self.provider)
 
     def initGui(self):
+        """Initialize the plugin UI."""
         self.initProcessing()
-        
-        icon = os.path.join(os.path.join(cmd_folder, 'icon.png'))
+
+        icon_path = os.path.join(os.path.dirname(__file__), 'icon.png')
         self.action = QAction(
-              QIcon(icon),
-              u"OpenTopography DEM Downloader", self.iface.mainWindow())
+            QIcon(icon_path),
+            "OpenTopography DEM Downloader",
+            self.iface.mainWindow()
+        )
         self.action.triggered.connect(self.run)
-        self.iface.addPluginToRasterMenu(u"&OpenTopography DEM", self.action)
+        self.iface.addPluginToRasterMenu("&OpenTopography DEM", self.action)
         self.iface.addToolBarIcon(self.action)
 
     def unload(self):
-        QgsApplication.processingRegistry().removeProvider(self.provider)
-        self.iface.removePluginRasterMenu(u"&OpenTopography DEM", self.action)
-        self.iface.removeToolBarIcon(self.action)
-        
-    def run(self):        
+        """Unload the plugin from QGIS."""
+        if self.provider:
+            QgsApplication.processingRegistry().removeProvider(self.provider)
+        if self.action:
+            self.iface.removePluginRasterMenu("&OpenTopography DEM", self.action)
+            self.iface.removeToolBarIcon(self.action)
+
+    def run(self):
+        """Run the algorithm dialog."""
         processing.execAlgorithmDialog("OTDEMDownloader:OpenTopography DEM Downloader")
