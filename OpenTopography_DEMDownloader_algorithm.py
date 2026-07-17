@@ -228,12 +228,19 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         Read https://opentopography.org/blog/introducing-api-keys-access-opentopography-global-datasets how to get an access key.
         
         Developed by: Kyaw Naing Win
-        Version: 4.1
-        Date: 2026-05-26
+        
+        Version: 4.2
+        Date: 2026-07-16
+        
+        change log ver4.2:
+        - Agência Nacional de Águas DEM (ANADEM, 30m) for South America and Global Ensemble Digital Terrain Model (30m) are added into the DEM list
+        
         change log ver4.1:
          - Fixed security warnings regarding API key keywords
+        
         change log ver4: 
          - Compatible with both QGIS 3.x and GIS 4.x versions
+        
         change log ver3: 
          - GEBCOIceTopo Bathymetry 500m and GEBCOSubIceTopo Bathymetry 500m datasets are added into the DEM list
         
