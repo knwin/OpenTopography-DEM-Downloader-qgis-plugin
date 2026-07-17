@@ -131,6 +131,40 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
         north = extent.yMaximum()
         west = extent.xMinimum()
         east = extent.xMaximum()
+        
+        # check bounding box if ANADEM is selected
+        anadem_north = 14.07948
+        anadem_south = -56.51552
+        anadem_east= -34.72655
+        anadem_west= -82.51655
+        
+        if dem_code == 'ANADEM':
+            
+            # 1. Check if the extent INTERSECTS with ANADEM extent
+            intersects = (
+                west <= anadem_east and
+                east >= anadem_west and
+                south <= anadem_north and
+                north >= anadem_south
+            )
+
+            # 2. Check if the extent is COMPLETELY WITHIN ANADEM extent
+            is_within = (
+                west >= anadem_west and
+                east <= anadem_east and
+                south >= anadem_south and
+                north <= anadem_north
+            )
+            if not intersects:
+                feedback.reportError(
+                "Selected extent is completely outside the ANADEM coverage area. Process cancelled.",
+                fatalError=False
+                )
+                return {} #just waiting to correct the error
+            
+            elif not is_within:
+                feedback.pushWarning("Selected extent extends beyond the ANADEM coverage area. But only avaiable data will be downloaded")
+        
         dem_url = (
             f"https://portal.opentopography.org/API/globaldem?demtype={dem_code}"
             f"&south={south}&north={north}&west={west}&east={east}&outputFormat=GTiff"
