@@ -157,7 +157,7 @@ class OpenTopographyDEMDownloaderAlgorithm(QgsProcessingAlgorithm):
             )
             if not intersects:
                 feedback.reportError(
-                "Selected extent is completely outside the ANADEM coverage area. Process cancelled.",
+                "Selected extent is completely outside the ANADEM coverage area_South Amearica. Process cancelled.",
                 fatalError=False
                 )
                 return {} #just waiting to correct the error
