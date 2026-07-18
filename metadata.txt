@@ -43,6 +43,7 @@ hasProcessingProvider=yes
 # changelog =
   Date: 2026-07-16
   change log ver4.2:
+   - Icon with transparent background
    - Agência Nacional de Águas DEM (ANADEM, 30m) for South America and Global Ensemble Digital Terrain Model (30m) are added into the DEM list
 
   Date: 2026-05-26

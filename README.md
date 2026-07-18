@@ -1,7 +1,7 @@
 # OpenTopography-DEM-Downloader-qgis-plugin
 ver-4.2
 
-QGIS versions 3.x or 4.x 
+QGIS versions >=3.16 or 4.x 
 
 A QGIS plugin to download DEMs from OpenTopography.org
 
